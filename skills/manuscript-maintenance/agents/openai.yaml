@@ -1,0 +1,6 @@
+interface:
+  display_name: "论文与参考文献维护"
+  short_description: "原位核对定义、论证、数据、引用和 LaTeX 格式，并编译检查实际页面。"
+
+policy:
+  allow_implicit_invocation: true

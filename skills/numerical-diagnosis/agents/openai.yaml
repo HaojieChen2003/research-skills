@@ -1,0 +1,6 @@
+interface:
+  display_name: "数值异常分层诊断"
+  short_description: "以小规模对照定位积分、矩阵、精度、时间推进或重构误差的首次异常环节。"
+
+policy:
+  allow_implicit_invocation: true

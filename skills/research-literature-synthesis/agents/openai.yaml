@@ -1,0 +1,6 @@
+interface:
+  display_name: "文献研究与问题定位"
+  short_description: "检索管理研究文献、核对原文证据，并建立研究动机与问题的论证链"
+
+policy:
+  allow_implicit_invocation: true

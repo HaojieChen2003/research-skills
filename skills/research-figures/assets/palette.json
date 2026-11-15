@@ -1,0 +1,11 @@
+{
+  "style": "NPG-inspired candidates; project semantic mapping takes precedence",
+  "colors": {
+    "blue": "#3C5488",
+    "coral": "#E64B35",
+    "teal": "#00A087",
+    "purple": "#8491B4",
+    "ink": "#202020",
+    "gray": "#6B7280"
+  }
+}

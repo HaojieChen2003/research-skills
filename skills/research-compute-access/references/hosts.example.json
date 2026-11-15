@@ -1,0 +1,15 @@
+{
+  "default": "windows-example",
+  "profiles": {
+    "windows-example": {
+      "host": "windows.example.invalid",
+      "user": "REPLACE_WITH_USER",
+      "identity_file": "~/.ssh/REPLACE_WITH_KEY",
+      "python_command": [
+        "py",
+        "-3"
+      ],
+      "ssh_options": []
+    }
+  }
+}

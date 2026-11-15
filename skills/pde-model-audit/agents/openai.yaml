@@ -1,0 +1,6 @@
+interface:
+  display_name: "数学模型核对"
+  short_description: "核对 PDE 方程、条件、量纲、分解、弱形式和代码对应关系，避免更换研究对象。"
+
+policy:
+  allow_implicit_invocation: true

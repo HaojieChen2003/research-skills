@@ -1,0 +1,6 @@
+interface:
+  display_name: "数值实验与代码维护"
+  short_description: "设计受控数值实验，维护共享代码与独立参数，记录运行、误差和可复现证据。"
+
+policy:
+  allow_implicit_invocation: true

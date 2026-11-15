@@ -1,0 +1,6 @@
+interface:
+  display_name: "Windows 与 GitHub 计算接入"
+  short_description: "通过 Tailscale/SSH 跨项目接入研究电脑，核对环境、同步代码并追踪远程任务与 GitHub 来源。"
+
+policy:
+  allow_implicit_invocation: true

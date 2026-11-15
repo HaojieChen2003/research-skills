@@ -1,0 +1,6 @@
+interface:
+  display_name: "科研绘图与配色"
+  short_description: "使用 Python 或 TikZ 绘制科研图，保持数据含义、语义配色、标注和排版一致。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,300 @@
+\documentclass[11pt,a4paper]{ctexart}
+
+% ================================================================
+% 使用说明
+% 编译器：XeLaTeX
+% 文献工具：如启用 biblatex，则使用 Biber
+%
+% 常用盒子：
+% \defn{标题}{内容}          定义
+% \prop[标题]{内容}          命题
+% \pf{题目}{证明步骤}        证明
+% \conclusion[标题]{内容}    结论
+% \note[标题]{内容}          注释
+% \unresolved[标题]{内容}    仍需解决
+% ================================================================
+
+% ── 页面与数学 ──
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{fontspec}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% ── 字体与段落（macOS）──
+\setsansfont{Helvetica Neue}
+\setCJKsansfont{PingFang SC}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+
+% ── 参考文献：需要时取消下面两行及文末命令的注释 ──
+% \usepackage[backend=biber,style=numeric]{biblatex}
+% \addbibresource{references.bib}
+
+\usepackage{hyperref}
+
+% ── macOS 风格配色 ──
+\definecolor{macText}{RGB}{28,28,30}
+\definecolor{macSecondary}{RGB}{99,99,102}
+\definecolor{macSeparator}{RGB}{209,209,214}
+\definecolor{macRule}{RGB}{229,229,234}
+\definecolor{macSurface}{RGB}{248,248,250}
+\definecolor{macBlue}{RGB}{0,122,255}
+\definecolor{macIndigo}{RGB}{88,86,214}
+\definecolor{macTeal}{RGB}{48,176,199}
+\definecolor{macGreen}{RGB}{40,170,75}
+\definecolor{macGray}{RGB}{110,110,115}
+\definecolor{macOrange}{RGB}{230,126,20}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=macBlue,
+    citecolor=macIndigo,
+    urlcolor=macBlue
+}
+\urlstyle{same}
+
+% ── 节标题 ──
+\titleformat{\section}
+    {\Large\bfseries\sffamily\color{macText}}
+    {\color{macBlue}\thesection}{0.75em}{}
+\titleformat{\subsection}
+    {\large\bfseries\sffamily\color{macText}}
+    {\color{macIndigo}\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\sffamily\color{macSecondary}}
+    {\thesubsubsection}{0.75em}{}
+
+\titlespacing*{\section}
+    {0pt}{2.4ex plus 0.8ex minus 0.2ex}{1.0ex}
+\titlespacing*{\subsection}
+    {0pt}{2.0ex plus 0.6ex minus 0.2ex}{0.8ex}
+\titlespacing*{\subsubsection}
+    {0pt}{1.6ex plus 0.4ex minus 0.2ex}{0.6ex}
+
+% ── 文档标题 ──
+\pretitle{\begin{center}\LARGE\bfseries\sffamily\color{macText}}
+\posttitle{\end{center}}
+\preauthor{\begin{center}\large\sffamily\color{macSecondary}}
+\postauthor{\end{center}}
+\predate{\begin{center}\small\sffamily\color{macSecondary}}
+\postdate{\end{center}}
+
+% ── 卡片基础样式 ──
+\tcbset{
+    mac card/.style={
+        enhanced,
+        breakable,
+        boxrule=0.4pt,
+        arc=2.5mm,
+        outer arc=2.5mm,
+        left=3.5mm,
+        right=3.5mm,
+        top=2.5mm,
+        bottom=2.5mm,
+        toptitle=2.5mm,
+        bottomtitle=2mm,
+        titlerule=0.35pt,
+        titlerule style=macRule,
+        before skip=8pt,
+        after skip=10pt,
+        fonttitle=\bfseries\sffamily,
+        colframe=macSeparator,
+        colback=macSurface,
+        colbacktitle=macSurface,
+        coltitle=macText
+    }
+}
+
+\newcommand{\macboxtitle}[2]{%
+    #1%
+    \if\relax\detokenize{#2}\relax
+    \else\quad{\mdseries #2}%
+    \fi
+}
+
+\newtcolorbox{definitionbox}[1]{
+    mac card,
+    title={\macboxtitle{定义}{#1}},
+    colframe=macBlue!55!white,
+    colback=macBlue!4!white,
+    colbacktitle=macBlue!4!white,
+    coltitle=macBlue,
+    titlerule style=macBlue!18!white
+}
+
+\newtcolorbox{propositionbox}[1][]{
+    mac card,
+    title={\macboxtitle{命题}{#1}},
+    colframe=macIndigo!55!white,
+    colback=macIndigo!4!white,
+    colbacktitle=macIndigo!4!white,
+    coltitle=macIndigo,
+    titlerule style=macIndigo!18!white
+}
+
+\newtcolorbox{conclusionbox}[1][]{
+    mac card,
+    title={\macboxtitle{结论}{#1}},
+    colframe=macGreen!55!white,
+    colback=macGreen!4!white,
+    colbacktitle=macGreen!4!white,
+    coltitle=macGreen,
+    titlerule style=macGreen!18!white
+}
+
+\newtcolorbox{notebox}[1][]{
+    mac card,
+    title={\macboxtitle{注释}{#1}},
+    colframe=macGray!55!white,
+    colback=macGray!4!white,
+    colbacktitle=macGray!4!white,
+    coltitle=macGray,
+    titlerule style=macGray!18!white
+}
+
+\newtcolorbox{unresolvedbox}[1][]{
+    mac card,
+    title={\macboxtitle{仍需解决}{#1}},
+    colframe=macOrange!60!white,
+    colback=macOrange!5!white,
+    colbacktitle=macOrange!5!white,
+    coltitle=macOrange,
+    titlerule style=macOrange!20!white
+}
+
+\newcommand{\macprooficon}{%
+    \tikz[baseline=-0.55ex]
+    \node[
+        circle,
+        draw=macTeal!55,
+        fill=macTeal!10,
+        line width=0.35pt,
+        minimum size=1.65em,
+        inner sep=0pt
+    ]{\color{macTeal}\scriptsize$\checkmark$};%
+}
+
+\newtcolorbox{proofbox}[1]{
+    mac card,
+    title={\macprooficon\quad\macboxtitle{证明}{#1}},
+    colframe=macTeal!50!white,
+    colback=macTeal!3!white,
+    colbacktitle=macTeal!3!white,
+    coltitle=macTeal,
+    titlerule style=macTeal!18!white
+}
+
+% ── 用户接口 ──
+\NewDocumentCommand{\defn}{m +m}{
+    \begin{definitionbox}{#1}
+        #2
+    \end{definitionbox}
+}
+
+\NewDocumentCommand{\prop}{O{} +m}{
+    \begin{propositionbox}[#1]
+        #2
+    \end{propositionbox}
+}
+
+\NewDocumentCommand{\conclusion}{O{} +m}{
+    \begin{conclusionbox}[#1]
+        #2
+    \end{conclusionbox}
+}
+
+\NewDocumentCommand{\note}{O{} +m}{
+    \begin{notebox}[#1]
+        #2
+    \end{notebox}
+}
+
+\NewDocumentCommand{\unresolved}{O{} +m}{
+    \begin{unresolvedbox}[#1]
+        #2
+    \end{unresolvedbox}
+}
+
+\NewDocumentCommand{\pf}{m +m}{
+    \begin{proofbox}{#1}
+        #2
+        \par\hfill{\color{macTeal}$\square$}
+    \end{proofbox}
+}
+
+\AtBeginDocument{\color{macText}}
+
+% ================================================================
+% 文档信息
+% ================================================================
+\title{数学学习笔记}
+\author{作者姓名}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+在这里简要说明本笔记研究的对象、主要问题和内容结构。
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{主题概览}
+
+说明问题背景、研究对象、符号约定以及本章的主要目标。
+
+\note[阅读提示]{
+    建议先列出前置知识，再进入定义与推导。
+}
+
+\section{核心定义与命题}
+
+\defn{示例定义}{
+    设 $X$ 为一个集合。在这里写出对象、条件、适用范围以及必要的符号说明。
+}
+
+\prop[示例命题]{
+    在这里写出命题的完整条件与结论。例如，若 $a,b\in\mathbb{R}$，则
+    \[
+        (a+b)^2=a^2+2ab+b^2.
+    \]
+}
+
+\section{推导与证明}
+
+\pf{示例命题}{
+    由乘法分配律，
+    \[
+    \begin{aligned}
+        (a+b)^2
+        &=(a+b)(a+b)\\
+        &=a^2+ab+ba+b^2\\
+        &=a^2+2ab+b^2.
+    \end{aligned}
+    \]
+}
+
+\section{结论与后续问题}
+
+\conclusion[本节结论]{
+    在这里概括已经建立的结果、适用条件与可复用方法。
+}
+
+\unresolved[后续问题]{
+    在这里记录尚未解决的问题、缺失条件或下一步需要验证的内容。
+}
+
+% 启用 biblatex 后取消下一行注释
+% \printbibliography[title=参考文献]
+
+\end{document}
